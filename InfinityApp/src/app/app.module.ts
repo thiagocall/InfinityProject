@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { MzNavbarModule, MzCardModule, MzButtonModule, MzIconModule, MzIconMdiModule, MzInputModule, MzSelectModule, MzSwitchModule} from 'ngx-materialize'
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { HttpClientModule } from '@angular/common/http';
 // export const options: Partial<IConfig> | (() => Partial<IConfig>);
 // export const options: Partial<IConfig> | (() => Partial<IConfig>)  ;
 
@@ -47,6 +48,7 @@ const maskConfig: Partial<IConfig> = {
     MzSelectModule,
     NgxMaskModule.forRoot(maskConfig),
     MzSwitchModule,
+    HttpClientModule,
     
 
   ],

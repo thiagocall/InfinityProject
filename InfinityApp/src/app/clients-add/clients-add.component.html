@@ -1,18 +1,20 @@
 <div class="container" style="margin-top: 15px;">
     <div class="row">
         <h4>Cadastro de Clientes</h4>
+       
+    </div>
+    <div class="row">
+        <h5>Dados Principais</h5>
+        <hr>
     </div>
     <div class="row">
         <mz-switch-container>
-            <input mz-switch
-              id="switch-id"
-              [on]="'PJ'"
-              type="checkbox" (change)="changePFPJ()">
-          </mz-switch-container>
+            <input mz-switch id="switch-id" [on]="'PJ'" type="checkbox" (change)="changePFPJ()">
+        </mz-switch-container>
     </div>
     <div class="row">
         <div class="col l6">
-           
+
             <mz-input-container>
 
                 <input mz-input [label]="'Nome/Razão Social'" [validate]="true" [dataError]="'Nome muito pequeno'"
@@ -22,28 +24,68 @@
         <div class="col l4">
             <mz-input-container>
                 <input mz-input [label]="'Nome Social/Nome Fantasia'" [validate]="true"
-                    [dataError]="'Nome muito pequeno'" id="alias-input" length="50" type="email">
+                    [dataError]="'Nome muito pequeno'" id="alias-input" length="50" type="text">
             </mz-input-container>
 
         </div>
-        <div class="col l2" *ngIf="(masktype == -1) ">
-            <mz-select-container>
+        <div class="col l2" >
+            <mz-select-container *ngIf="(masktype == -1)">
                 <select mz-select id="gender-select" [label]="'Sexo'" [placeholder]="'Selecione'">
                     <option>M</option>
                     <option>F</option>
 
                 </select>
             </mz-select-container>
+            <mz-input-container *ngIf="(masktype == 1)">
+                <input mz-input [label]="'Inscrição Estadual'" [validate]="true" [minLength]="6" id="name-input" length="18"
+                    type="text">
+                </mz-input-container>
         </div>
     </div>
 
     <div class="row">
         <div class="col l3">
-            <mz-input-container [inline]="true">
-                <input mz-input [label]="'CPF/CNPJ'" [validate]="true" [dataError]="'Formato Incorreto'"
-                    [minLength]="6" id="name-input" length="18" type="text" [mask]="(masktype == -1)? '000.000.000-00' : '00.000.000/0000-00' " [showMaskTyped]="true"> 
+            <mz-input-container>
+                <input mz-input [label]="'CPF/CNPJ'" [validate]="true" [dataError]="'Formato Incorreto'" [minLength]="6"
+                    id="name-input" length="18" type="text"
+                    [mask]="(masktype == -1)? '000.000.000-00' : '00.000.000/0000-00' " [showMaskTyped]="true">
+            </mz-input-container>
+
+        </div>
+        <div class="col l3" *ngIf="(masktype == 1)">
+            <mz-input-container>
+                <input mz-input [label]="'Contato Comercial'"
+                    [dataError]="'Nome muito curto'" id="alias-input" length="50" type="text">
             </mz-input-container>
             
+        </div>
+        <div class="col l3" >
+            <mz-input-container>
+                <input mz-input [label]="'Telefone'"
+                    [dataError]="'telefone incorreto'" id="alias-input" length="50" type="text" [mask]="'(00)0000-0000'" [showMaskTyped]="true">
+            </mz-input-container>
+            
+        </div>
+        <div class="col l3" >
+            <mz-input-container>
+                <input mz-input [label]="'Celular'" [validate]="true"
+                    [dataError]="'Nome muito pequeno'" id="alias-input" length="50" type="text" [mask]="'(00)00000-0000'" [showMaskTyped]="true">
+            </mz-input-container>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col l3">
+            <mz-input-container>
+                <input mz-input [label]="'E-mail'" [validate]="true" [dataError]="'E-mail Incorreto'" [minLength]="6"
+                    id="name-input" length="30" type="email">
+            </mz-input-container>
+        </div>
+        <div class="col l3">
+            <mz-input-container>
+                <input mz-input [label]="'Web Site'" [validate]="true" [dataError]="'E-mail Incorreto'" [minLength]="6"
+                    id="name-input" length="30" type="text">
+            </mz-input-container>
         </div>
         <div class="col l3">
             <mz-select-container>
@@ -55,7 +97,55 @@
                     <option>Select</option>
                 </select>
             </mz-select-container>
-          
+
         </div>
     </div>
-</div>
+    <div class="row">
+        <h5>Endereço</h5>
+        <hr>
+    </div>
+
+    <div class="row">
+        <div class="col l2">
+
+            <mz-input-container>
+                <input mz-input [label]="'CEP'" [validate]="true" [dataError]="'CEP Incorreto'" [placeholder]="'Pesquise o CEP'"
+                    [minLength]="6" id="name-input" length="80" type="text" [mask]="'00000-000'" (blur)="getCep($event.target.value)">
+            </mz-input-container>
+        </div>
+        <div class="col l6">
+            <mz-input-container>
+                <input mz-input [label]="'Logradouro'" [validate]="true" [placeholder]="'Rua Silva, Travessa Martina...'"
+                    [dataError]="'Nome muito pequeno'" id="alias-input" length="50" type="text" [value]="cep?.logradouro">
+            </mz-input-container>
+
+        </div>
+        <div class="col l4">
+            <mz-input-container>
+                <input mz-input [label]="'Bairro'" [validate]="true" [placeholder]="'Digite o bairro'"
+                    [dataError]="'Nome muito pequeno'" id="alias-input" length="50" type="text" [value]="cep?.bairro">
+            </mz-input-container>
+
+        </div>
+  
+    </div>
+    <div class="row">
+        <div class="col l4">
+            <mz-input-container>
+                <input mz-input [label]="'Cidade - UF'" [validate]="true" [placeholder]="'Digite a cidade'"
+                    [dataError]="'Nome muito pequeno'" id="alias-input" length="50" type="text" value="{{(cep!=null)?(cep?.localidade + ' - ' + cep?.uf):''}}">
+            </mz-input-container>
+        </div>
+        <div class="col l2">
+            <mz-input-container>
+                <input mz-input [label]="'Número'" [validate]="true" 
+                    [dataError]="'Nome muito pequeno'" id="alias-input" length="50" type="text">
+            </mz-input-container>
+        </div>
+        <div class="col l4">
+            <mz-input-container>
+                <input mz-input [label]="'Complemento'" [validate]="true" [placeholder]="'Apto 105, Lote 1, Quadra 5...'"
+                    [dataError]="'Nome muito pequeno'" id="alias-input" length="50" type="text">
+            </mz-input-container>
+        </div>
+    </div>

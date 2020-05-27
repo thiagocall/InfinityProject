@@ -1,0 +1,43 @@
+<div class="container">
+    <h4>Pedidos</h4>
+    <table class="striped centered">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>idCliente</th>
+                <th>Nome</th>
+                <th>Data Entrada</th>
+                <th>Data Previsão</th>
+                <th>Total da Compra</th>
+                <th>Detalhes</th>
+                <th>Status</th>
+            </tr>
+        
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of dados">
+                <td>{{order.id}}</td>
+                <td>{{order.clientNumber}}</td>
+                <td>{{order.clientName}}</td>
+                <td>{{order.orderDate}}</td>
+                <td>{{order.orderEndDate}}</td>
+                <td>{{order.deliveryCost}}</td>
+                <td><button mz-button
+                    [float]=true>
+                    <i class="material-icons" >
+                        shopping_basket
+                        </i>
+                  </button></td>
+                <td>
+                    <button mz-button [ngClass]="{'pulse red darken-2': order.Status < 0}"
+                    [float]=true>
+                    <i class="material-icons" >
+                        {{(order.Status < 0) ? "alarm" :"alarm_on"}}
+                        </i>
+                  </button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

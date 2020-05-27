@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <div class="col l6 s12">
+            <mz-card class="blue-grey darken-1 white-text" [horizontal]="true" [hoverable]="true">
+                <mz-card-image-title>
+                    Card Image Title
+                </mz-card-image-title>
+                <mz-card-title>
+                    Pedidos na Esteira
+                </mz-card-title>
+                <mz-card-content>
+                    <h1>25</h1>
+                    <div class="row">
+                        <div class="col l12">Novos: 5</div>
+                        <div class="col l12">Em andamento: 15</div>
+                        <div class="col l12">Pendentes: 5 </div>
+                    </div>
+                </mz-card-content>
+                <mz-card-action>
+                    <a [routerLink]="['/pedidos/lista']" routerLinkActive="router-link-active" >Ver todos os pedidos</a>
+                </mz-card-action>
+            </mz-card>
+
+        </div>
+    </div>
+
+</div>

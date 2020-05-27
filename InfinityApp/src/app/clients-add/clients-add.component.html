@@ -1,0 +1,61 @@
+<div class="container" style="margin-top: 15px;">
+    <div class="row">
+        <h4>Cadastro de Clientes</h4>
+    </div>
+    <div class="row">
+        <mz-switch-container>
+            <input mz-switch
+              id="switch-id"
+              [on]="'PJ'"
+              type="checkbox" (change)="changePFPJ()">
+          </mz-switch-container>
+    </div>
+    <div class="row">
+        <div class="col l6">
+           
+            <mz-input-container>
+
+                <input mz-input [label]="'Nome/Razão Social'" [validate]="true" [dataError]="'Nome muito pequeno'"
+                    [minLength]="6" id="name-input" length="80" type="text">
+            </mz-input-container>
+        </div>
+        <div class="col l4">
+            <mz-input-container>
+                <input mz-input [label]="'Nome Social/Nome Fantasia'" [validate]="true"
+                    [dataError]="'Nome muito pequeno'" id="alias-input" length="50" type="email">
+            </mz-input-container>
+
+        </div>
+        <div class="col l2" *ngIf="(masktype == -1) ">
+            <mz-select-container>
+                <select mz-select id="gender-select" [label]="'Sexo'" [placeholder]="'Selecione'">
+                    <option>M</option>
+                    <option>F</option>
+
+                </select>
+            </mz-select-container>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col l3">
+            <mz-input-container [inline]="true">
+                <input mz-input [label]="'CPF/CNPJ'" [validate]="true" [dataError]="'Formato Incorreto'"
+                    [minLength]="6" id="name-input" length="18" type="text" [mask]="(masktype == -1)? '000.000.000-00' : '00.000.000/0000-00' " [showMaskTyped]="true"> 
+            </mz-input-container>
+            
+        </div>
+        <div class="col l3">
+            <mz-select-container>
+                <select mz-select id="gender-select" [label]="'Tipo Lista Preço'" [placeholder]="'Selcione'">
+                    <option>Bronze</option>
+                    <option>Padrão</option>
+                    <option>Prata</option>
+                    <option>Ouro</option>
+                    <option>Select</option>
+                </select>
+            </mz-select-container>
+          
+        </div>
+    </div>
+</div>
